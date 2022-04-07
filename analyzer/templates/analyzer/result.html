@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{%block title%} Result {%endblock%}
+{% load static %}
+{% block content %}
+<div xmlns="http://www.w3.org/1999/html">
+    <div class="row align-items-center">
+        <div class="col-lg-9 col-xl-8">
+            <div class="row align-items-center">
+                <div class="col-md-4 my-2 my-md-0">
+                    <div class="input-icon">
+                        <input type="text" class="form-control" placeholder="Search..."
+                               id="kt_datatable_search_query"/>
+                        <span>
+                            <i class="flaticon2-search-1 text-muted"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+<!--            <a href="{% url 'download' %}" class="button skinny" name="class_1_download">-->
+<!--                <p>Baixar Arquivo</p>-->
+<!--            </a>-->
+            <b>{{keyword}}</b>
+            <a href="{% url 'download' %}" download="zip" type="application/zip" class="btn btn-primary font-weight-bolder">
+            <!-- <a href="{% url 'download' %}" class="btn btn-primary font-weight-bolder"></a> -->
+                <span class="svg-icon svg-icon-md"><!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg--><svg
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                        viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"></rect>
+                            <circle fill="#000000" cx="9" cy="15" r="6"></circle>
+                            <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
+                                  fill="#000000" opacity="0.3"></path>
+                        </g>
+                    </svg><!--end::Svg Icon-->
+                </span> Download ZIP
+            </a>
+            
+        </div>
+    </div>
+</div>
+<!--end::Search Form-->
+<div id="kt_datatable" class="datatable-brand"></div>
+
+<script>
+
+
+    jQuery(document).ready(function () {
+        var datatable = $('#kt_datatable').KTDatatable({
+
+            // datasource definition
+            data: {
+                type: 'remote',
+                source: {
+                    read: {
+                        url: "{% url 'get_result' %}",
+                        method: 'GET',
+                    }
+
+                },
+                pageSize: 10,
+            },
+            // column sorting
+            sortable: true,
+            class: 'datatable-brand',
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
+
+            pagination: true,
+            // columns definition
+            columns: [
+            // {
+            //     field: 'nome',
+            //     title: 'Name',
+            // },
+            {
+                field: 'curriculo',
+                title: 'Resume',
+                 width: 60  ,
+            },
+            {
+                field: 'email',
+                title: 'Email',
+            },
+            {
+                field: 'telefone',
+                title: 'Phone',
+            },
+            {
+                field: 'certeza',
+                title: 'Confianca',
+                 width: 60  ,
+            },]
+        });
+
+
+        $('#kt_datatable_search_status').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Status');
+        });
+
+        $('#kt_datatable_search_type').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Type');
+        });
+
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+    });
+
+
+
+</script>
+{% endblock %}

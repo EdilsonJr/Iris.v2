@@ -1,0 +1,701 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+
+  --bg: #090967;
+  --icon: #558d02;
+  --text: #000000;
+  --headerText: #000000;
+  --title: #000000;
+  --link: #558d02;
+
+  --boxBg: #ffffff;
+  --boxShadow: #0000001a;
+  --lightGreyBorder: #72727233;
+
+  --sidebarBg: #7079d3;
+  --sidebarBgActive: #558d02;
+  --sidebarBgLight: #E5C58F;
+  --sidebarIcon: #558d02;
+  --sidebarSelected: #558d02;
+  --sidebarText: #eee;
+  --sidebarSection: #E5C58F;
+
+  --buttonShadow: #00000033;
+  --buttonBg: #558d02;
+  --buttonBgInvisible: #814fd200;
+  --buttonHeader: #ffffff;
+
+  --borderInput: #eee;
+  --borderInputFocus: black;
+
+  --tableZebra: #f9f9f9;
+  --confirm: #61ce70;
+  --cancel: #dc3545;
+}
+
+body {
+  --widthSidebar: 25rem;
+}
+
+body.collapsed {
+  --widthSidebar: 8rem;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+form.dashboard-data {
+    border-bottom: 0.1rem solid var(--boxShadow);
+}
+
+.shadow {
+  -webkit-box-shadow: 0 0.4rem 1.8rem 0 var(--boxShadow),
+    0 0.7rem 1rem -0.5rem var(--boxShadow);
+  -moz-box-shadow: 0 0.4rem 1.8rem var(--boxShadow),
+    0 0.7rem 1rem -0.5rem var(--boxShadow);
+  box-shadow: 0 0.4rem 1.8rem 0 var(--boxShadow),
+    0 0.7rem 1rem -0.5rem var(--boxShadow);
+}
+
+/* Navegação */
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--widthSidebar);
+  height: 100%;
+  padding: 1.5rem;
+  z-index: 3;
+
+  font-weight: 400;
+  color: var(--sidebarText);
+  background-color: var(--sidebarBg);
+
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+nav:hover {
+  --widthSidebar: 25rem;
+}
+
+nav h4 {
+  margin: 1rem;
+  font-weight: 400;
+  color: var(--sidebarSection);
+  transition: opacity 0.5s;
+}
+
+body.collapsed nav h4 {
+  opacity: 0;
+}
+
+body.collapsed nav:hover h4 {
+  opacity: 1;
+}
+
+nav figure {
+  margin: 1rem 0 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+nav #collapse {
+  width: 1rem;
+  height: 2rem;
+  margin-left: 2.25rem;
+  transition: all 0.5s;
+  transform-origin: center;
+  display: flex;
+  align-items: center;
+}
+
+body.collapsed nav #collapse {
+  transform: rotate(180deg);
+}
+
+nav #collapse .top,
+nav #collapse .bottom {
+  content: "";
+  position: absolute;
+  width: 1.125rem;
+  height: 0.35rem;
+  border-radius: 0.125rem;
+  background-color: var(--sidebarSection);
+  transform-origin: left center;
+  transition: all 0.3s;
+}
+
+nav #collapse .top {
+  margin-top: 0.2rem;
+  transform: rotate(-45deg);
+}
+
+nav #collapse .bottom {
+  margin-bottom: 0.2rem;
+  transform: rotate(45deg);
+}
+
+nav .sector-check {
+  display: none;
+}
+
+nav .nav-sector {
+  max-height: 50rem;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+nav .nav-sector label {
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .nav-sector label:hover {
+  cursor: pointer;
+}
+
+nav .nav-sector label .collapse-sector {
+  width: 1.125rem;
+  height: 1rem;
+  transition: all 0.5s;
+  transform-origin: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+nav .nav-sector label .collapse-sector .top,
+nav .nav-sector label .collapse-sector .bottom {
+  content: "";
+  position: absolute;
+  width: 0.75rem;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  background-color: var(--sidebarSection);
+  transform-origin: bottom center;
+  transition: all 0.5s;
+}
+
+nav .nav-sector label .collapse-sector .top {
+  left: 0;
+  transform: rotate(-45deg);
+}
+
+nav .nav-sector label .collapse-sector .bottom {
+  left: 0.3rem;
+  transform: rotate(45deg);
+}
+
+#c1:checked ~ #s1,
+#c2:checked ~ #s2 {
+  max-height: 4rem;
+}
+
+#c1:checked ~ #s1 .collapse-sector,
+#c2:checked ~ #s2 .collapse-sector {
+  transform: rotate(180deg);
+}
+
+nav figure:hover {
+  cursor: pointer;
+}
+
+nav .tipo {
+  height: 2rem;
+  padding-left: 0.5rem;
+}
+
+nav .logo,
+nav i {
+  flex: 0 0 5rem;
+  width: 5rem;
+  height: auto;
+}
+
+nav i {
+  color: var(--sidebarIcon);
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+nav i::before {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+}
+
+nav .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0.2rem;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  transition: all 0.1s;
+}
+
+nav .item:hover {
+  opacity: 0.5;
+}
+
+nav .item i {
+  color: #e3b6ac;
+}
+
+nav .item.active i {
+  color: var(--sidebarSelected);
+}
+
+nav .item p {
+  display: flex;
+  align-items: center;
+  color: var(--sidebarText);
+  line-height: 1.35rem;
+  font-weight: 600;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+nav figure .tipo-content,
+nav .item p {
+  overflow: hidden;
+  flex-wrap: nowrap;
+  transition: opacity 0.5s;
+}
+
+body.collapsed nav figure .tipo-content,
+body.collapsed nav #collapse,
+body.collapsed nav .item p {
+  opacity: 0;
+}
+
+body.collapsed nav:hover figure .tipo-content,
+body.collapsed nav:hover #collapse,
+body.collapsed nav:hover .item p {
+  opacity: 0.8;
+}
+
+/* Conteúdo da página */
+main {
+  z-index: 2;
+  margin-left: var(--widthSidebar);
+}
+
+/* Top da tela */
+header {
+  position: fixed;
+  left: var(--widthSidebar);
+  top: 0;
+  width: calc(100% - var(--widthSidebar));
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--boxBg);
+  z-index: 2;
+}
+
+header .identification {
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+header .breadcrumb {
+  color: var(--headerText);
+  font-weight: 700;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  border-top: 0.1rem solid var(--lightGreyBorder);
+}
+
+header .breadcrumb span {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+header .breadcrumb a {
+  transition: color 0.3s;
+}
+
+header .breadcrumb a:hover {
+  color: var(--link);
+}
+
+header p {
+  font-weight: 600;
+}
+
+header .painel {
+  color: var(--headerText);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header .painel p {
+  margin-right: 1rem;
+}
+
+header .painel .icon {
+  padding: 0.75rem;
+  margin: 0 0.25rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+header .painel .icon:hover {
+  background-color: var(--buttonHeader);
+}
+
+header .slogan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--headerText);
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+/* Conteúdo da página */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rem;
+  padding: 1rem;
+  animation: fadeIn 0.5s both;
+}
+
+.box-dashboard{
+  flex: 0 0 calc(100% - 2rem);
+  width: calc(50% - 3rem);
+  margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+  background-color: var(--boxBg);
+  padding: 1.5rem 2.5rem 2.5rem 2.5rem;
+  border-radius: 1.5rem;
+}
+
+.box {
+  flex: 0 0 calc(100% - 2rem);
+  width: calc(100% - 2rem);
+  margin: 1rem 1rem;
+  background-color: var(--boxBg);
+  padding: 1.5rem 2.5rem 2.5rem 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.responsive-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 1rem;
+  margin: 0 0 2rem;
+  border-bottom: 0.1rem solid var(--boxShadow);
+}
+
+.box-dashboard h1,
+.box h1 {
+  color: var(--title);
+  opacity: 0.8;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.box-dashboard h2,
+.box h2 {
+  color: var(--title);
+  opacity: 0.8;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Componente de Paginação */
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0 2rem;
+
+  color:  #052D37;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.pagination i {
+  font-size: 1.75rem;
+}
+
+.pagination .pages {
+  margin: 0 0.5rem;
+}
+
+.pagination span,
+.pagination p,
+.pagination a {
+  padding: 1rem;
+}
+
+.pagination span,
+.pagination p {
+  opacity: 0.35;
+}
+
+.pagination a {
+  transition: all 0.3s;
+}
+
+.pagination a:hover {
+  color: var(--link);
+  background-color: var(--buttonHeader);
+  cursor: pointer;
+}
+
+/* Componente de Button */
+.button {
+  display: inline-block;
+  color: var(--sidebarText) !important;
+  background-color: var(--buttonBg);
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 1.5rem 2.5rem;
+  transition: all 0.3s;
+  text-transform: lowercase;
+}
+
+.button.skinny,
+button.button {
+  padding: 1rem 2rem;
+  font-weight: 700;
+}
+
+.button.mini {
+  padding: 0.75rem;
+  width: 3.5rem;
+}
+
+.button:not(.disabled):hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.button.disabled {
+  background-color: var(--buttonShadow);
+}
+
+/* Confirmação para remoção */
+.button.confirm {
+  background-color: var(--confirm);
+}
+
+.button.cancel {
+  background-color: var(--cancel);
+}
+
+.control {
+  display: none;
+}
+
+.control ~ label {
+  position: relative;
+  margin-left: 0.5rem;
+  width: 4rem !important;
+  transition: transform 0.6s, width 0.3s;
+  transform-style: preserve-3d;
+}
+
+.control:checked ~ label {
+  width: 8rem !important;
+  transform: rotateX(180deg);
+}
+
+/*.control-remove,*/
+.control-confirm {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.control-remove{
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.control-confirm {
+  width: 8rem !important;
+  transform: rotateX(180deg);
+}
+
+/* Componente de Tabela Responsiva */
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.responsive-table tr:nth-of-type(odd) {
+  background: var(--tableZebra);
+}
+
+.responsive-table th {
+  background-color: #ffffff;
+  color: var(--title);
+  font-weight: 600;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 0.6rem;
+  border-bottom: 0.1rem solid var(--buttonShadow);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.responsive-table .table-right {
+  text-align: right !important;
+}
+
+.responsive-table .table-center {
+  text-align: center !important;
+  display: flex;
+  justify-content: center;
+}
+
+/* Formulários */
+form {
+  margin: 1rem;
+}
+
+form .row {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 0;
+}
+
+form .row.data {
+  margin: 0;
+  padding: 0;
+}
+
+form .section {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 max(20rem, 50%);
+  width: max(20rem, 50%);
+}
+
+form .section label {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+form input,
+form select {
+  font-size: 1.4rem;
+  padding: 0.75rem 1rem;
+  border: 0.2rem solid var(--borderInput);
+  border-radius: 0.4rem;
+  color: var(--text);
+  background-color: #ffffff;
+  margin-right: 1rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+form input::placeholder,
+form select::placeholder {
+  opacity: 0.5;
+}
+
+form input:focus,
+form select:focus {
+  color: var(--borderInputFocus);
+  border-color: var(--borderInputFocus);
+}
+
+form input[type="checkbox"] {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+form select {
+  padding: 0.5rem;
+}
+
+form label {
+  flex: 0 0 max(20rem, 20%);
+  width: max(20rem, 20%);
+  padding-right: 1rem;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: 600;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+form p.info {
+  height: 2.2rem;
+  margin: 1rem 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  justify-content: flex-start;
+}
+
+form .controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 1rem 0;
+  margin: 1rem;
+}

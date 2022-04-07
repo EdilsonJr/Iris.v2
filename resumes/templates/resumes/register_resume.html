@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{%block title%} Register Resume {%endblock%}
+{% load static %}
+{% block content %}
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--    <meta charset="UTF-8">-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>-->
+
+    <link href="{% static 'main/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <!--    <link-->
+    <!--            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,800&display=swap"-->
+    <!--            rel="stylesheet"-->
+    <!--    />-->
+    <!--    <link-->
+    <!--            rel="stylesheet"-->
+    <!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"-->
+    <!--    />-->
+    <!--    &lt;!&ndash;    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">&ndash;&gt;-->
+    <!--    <link rel="stylesheet" type="text/css" href="{% static 'main/login-1.min.css' %}">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'main/plugins/global/plugins.bundle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.bundle.min.css' %}">
+
+    <title>Iris</title>
+
+</head>
+<body class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
+<div class="card-body px-0">
+    <form class="form" id="kt_form" method="POST"  action="{% url 'register_resume' %}"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="tab-content">
+            <!--begin::Tab-->
+            <div class="tab-pane show active px-7" id="kt_user_edit_tab_1" role="tabpanel">
+                <!--begin::Row-->
+                <div class="row">
+                    <div class="col-xl-2"></div>
+                    <div class="col-xl-7 my-2">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <label class="col-3"></label>
+                            <div class="col-8 text-center">
+                                <h1>Register Resume</h1>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-3 text-lg-right text-left">Full Name</label>
+                            <div class="col-9">
+                                <input class="form-control form-control-lg form-control-solid" type="text"
+                                       name="fullname">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-3 text-lg-right text-left">Email Address</label>
+                            <div class="col-9">
+                                <div class="input-group input-group-lg input-group-solid">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i
+                                            class="la la-at"></i></span></div>
+                                    <input type="email" class="form-control form-control-lg form-control-solid"
+                                           placeholder="Email" name="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-3 text-lg-right text-left">Contact Phone</label>
+                            <div class="col-9">
+                                <div class="input-group input-group-lg input-group-solid">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i
+                                            class="la la-phone"></i></span></div>
+                                    <input type="text" class="form-control form-control-lg form-control-solid"
+                                           placeholder="Phone" name="phone">
+                                </div>
+                                <span class="form-text text-muted">We'll never share your email with anyone else.</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-3 text-lg-right text-left">Desired job title</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <select class="form-control form-control-lg form-control-solid" name="job_title">
+                                    <option>Select job title...</option>
+                                    <option value="Advocate">Advocate</option>
+                                    <option value="Arts">Arts</option>
+                                    <option value="Automation Testing">Automation Testing</option>
+                                    <option value="Blockchain">Blockchain</option>
+                                    <option value="Business Analyst">Business Analyst</option>
+                                    <option value="Civil Engineer">Civil Engineer</option>
+                                    <option value="Data Science">Data Science</option>
+                                    <option value="Database">Database</option>
+                                    <option value="DevOps Engineer">DevOps Engineer</option>
+                                    <option value="DotNet Developer">DotNet Developer</option>
+                                    <option value="ETL Developer">ETL Developer</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="HR">HR</option>
+                                    <option value="Hadoop">Hadoop</option>
+                                    <option value="Health and fitness">Health and fitness</option>
+                                    <option value="Java Developer">Java Developer</option>
+                                    <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                    <option value="Network Security Engineer">Network Security Engineer</option>
+                                    <option value="Operations Manager">Operations Manager</option>
+                                    <option value="PMO">PMO</option>
+                                    <option value="Python Developer">Python Developer</option>
+                                    <option value="SAP Developer">SAP Developer</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Testing">Testing</option>
+                                    <option value="Web Designing">Web Designing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-3 text-lg-right text-left">Upload File:</label>
+                            <div class="col-9">
+                                <input type="file" name="pdf">
+                            </div>
+                        </div>
+                        <!--end::Group-->
+                    </div>
+                </div>
+                <!--end::Row-->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button type="submit"
+                                class="btn btn-primary font-weight-bolder font-size-h6">
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <!--end::Tab-->
+        </div>
+    </form>
+</div>
+<!--</div>-->
+</body>
+<script src="{% static 'main/vendor/jquery/jquery.slim.min.js'%}"></script>
+<script src="{% static 'main/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+</html>
+{% endblock %}

@@ -1,0 +1,67 @@
+{%extends 'base.html'%}
+{%block title%} Analyzer {%endblock%}
+{% load static %}
+{% block content %}
+<form action="{% url 'analyzer_store' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card-body">
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right">Desired job title</label>
+            <div class="col-lg-9 col-xl-6">
+                <select class="form-control form-control-lg form-control-solid" name="key_word">
+                    <option>Select job title...</option>
+                    <option value="Advocate">Advocate</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Automation Testing">Automation Testing</option>
+                    <option value="Blockchain">Blockchain</option>
+                    <option value="Business Analyst">Business Analyst</option>
+                    <option value="Civil Engineer">Civil Engineer</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Database">Database</option>
+                    <option value="DevOps Engineer">DevOps Engineer</option>
+                    <option value="DotNet Developer">DotNet Developer</option>
+                    <option value="ETL Developer">ETL Developer</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Hadoop">Hadoop</option>
+                    <option value="Health and fitness">Health and fitness</option>
+                    <option value="Java Developer">Java Developer</option>
+                    <option value="Mechanical Engineer">Mechanical Engineer</option>
+                    <option value="Network Security Engineer">Network Security Engineer</option>
+                    <option value="Operations Manager">Operations Manager</option>
+                    <option value="PMO">PMO</option>
+                    <option value="Python Developer">Python Developer</option>
+                    <option value="SAP Developer">SAP Developer</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Web Designing">Web Designing</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right">Upload File:</label>
+            <div class="col-lg-6">
+                <input type="file" name="file">
+                <!-- <input type="file" id="searching_data" name="searching_data" value="{{ obj_model.file }}" multiple> -->
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label text-lg-right">Certainty:</label>
+            <div class="col-lg-6">
+                <!-- <input type="text" name="certainty"> -->
+                <input type="range" name="certainty" value="60" min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+                <output>60</output>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

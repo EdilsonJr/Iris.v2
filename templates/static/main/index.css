@@ -1,0 +1,218 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Arial Black", Gadget, sans-serif;
+
+  --text: #000000;
+  --bgColor: #558d02; 
+  --startOrange: #090967;
+  --stopOrange: #b1b3c9;
+  --lightGrey: #727272;
+  --lightGreyBorder: #72727255;
+  --darkGrey: #4f4f4f;
+  --toogleTrack: #090967;
+  --toogleThumb: #b1b3c9;
+  --error: #ff0000;
+  --inputBg: #ffffff;
+}
+
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.6rem;
+  color: var(--lightGrey);
+  background-color: var(--startOrange);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--startOrange),
+    var(--stopOrange)
+  );
+}
+
+div.imgcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 4rem;
+}
+
+div.imgcontainer img {
+  width: 30%;
+  margin-bottom: 1.2rem;
+}
+
+div.imgcontainer p {
+  font-size: 1.6rem;
+  color: var(--startOrange);
+}
+
+form {
+  background-color: var(--bgColor);
+  border-radius: 1.5%;
+  border-top: 1px solid var(--lightGrey);
+  text-align: left;
+  width: 48rem;
+  padding: 3rem;
+}
+
+div.row {
+  margin: 1.5rem 0;
+}
+
+span.psw {
+  float: right;
+  padding-top: 0.5rem;
+
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+span.psw:hover {
+  color: var(--startOrange);
+}
+
+div.fields {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  border-top: 1px solid var(--lightGreyBorder);
+}
+
+div.command {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.rowKeep {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+div.rowKeep label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+div.toogleTrack {
+  width: 3.2rem;
+  height: fit-content;
+  border-radius: 0.8rem;
+  background-color: var(--toogleTrack);
+  margin-right: 0.5rem;
+}
+
+div.toogleThumb {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: var(--toogleThumb);
+  border: 0.3rem solid var(--toogleTrack);
+  border-radius: 50%;
+
+  position: relative;
+  left: 1.6rem;
+  transition: left 0.3s;
+}
+
+input[type="checkbox"]:checked ~ label div.toogleTrack div.toogleThumb {
+  left: 0;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 1.2rem;
+  margin: 0.5rem 0 0;
+  display: inline-block;
+  border: none;
+  border-radius: 2%;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  background-color: var(--inputBg);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: var(--lightGrey);
+  opacity: 0.8;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  color: #000000;
+  font-weight: 500;
+}
+
+button {
+  background-color: var(--startOrange);
+  color: var(--inputBg);
+  padding: 1.5rem 2.5rem;
+  margin: 8px 0;
+
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: lowercase;
+
+  border: none;
+  border-radius: 5%;
+  transition: opacity 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
+
+.error {
+  font-size: 1.6rem;
+  color: var(--error);
+  font-weight: 300;
+}

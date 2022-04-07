@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{%block title%}  Resumes {%endblock%}
+{% block content %}
+<div>
+    <table class="table table-success ">
+        <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Desired job title</th>
+            <th>Resume</th>
+            <th>File</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for curriculo in curriculos %}
+        <tr>
+            <td>{{ curriculo.fullname }}</td>
+            <td>{{ curriculo.email }}</td>
+            <td>{{ curriculo.phone }}</td>
+            <td>{{ curriculo.job_title }}</td>
+            <th>
+                <a href="{{ curriculo.pdf.url }}">
+                    <button class="btn btn-dark" type="submit">View</button>
+                </a>
+            </th>
+            <th>
+                <a href="{{ curriculo.pdf.url }}" download="{{ curriculo.pdf.url }}" type="application/pdf">
+                <button class="btn btn-dark" type="submit">Download</button>
+                </a>
+            </th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

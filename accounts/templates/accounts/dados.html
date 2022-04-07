@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%block title%} usuarios registrados {%endblock%}
+{% block content %}
+<div>
+    <table class="table table-success ">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>
+                <a href="#">{{ usuario.id }}</a>
+            </td>
+            <td>{{ usuario.firstname }}</td>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.phone }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.country }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
